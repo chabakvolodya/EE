@@ -1,4 +1,4 @@
-package com.goit.ee.mod_3_part_2.api;
+package ua.goit.java.ee.mod3_2.api;
 
 /**
  * Created by Chucky on 16.06.2016.

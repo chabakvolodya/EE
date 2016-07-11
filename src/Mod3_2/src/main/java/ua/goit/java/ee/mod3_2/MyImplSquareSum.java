@@ -1,6 +1,6 @@
-package com.goit.ee.mod_3_part_2;
+package ua.goit.java.ee.mod3_2;
 
-import com.goit.ee.mod_3_part_2.api.*;
+import ua.goit.java.ee.mod3_2.api.SquareSum;
 
 import java.util.ArrayList;
 import java.util.concurrent.*;
@@ -9,15 +9,6 @@ import java.util.concurrent.*;
  * Created by Chucky on 23.06.2016.
  */
 public class MyImplSquareSum implements SquareSum {
-
-
-    public static void main(String[] args) {
-
-        int[] test = {2, 3, 4, 5, 6};   //4 9 16 25 36
-//        int[] test = {Integer.MAX_VALUE};
-
-        System.out.println("All result: " + new MyImplSquareSum().getSquareSum(test, 2));
-    }
 
     @Override
     public long getSquareSum(int[] values, int numberOfThreads) {
