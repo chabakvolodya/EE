@@ -42,7 +42,7 @@ public class MyImplSquareSum implements SquareSum {
         }
 
         if (!phaser.isTerminated())
-            throw new TimeOutSquareSum();
+            throw new TimeOutSquareSum("Час виконання операції перевищив 5 секунд");
 
         executor.shutdown();
 
@@ -74,6 +74,12 @@ public class MyImplSquareSum implements SquareSum {
 
         @Override
         public void run() {
+
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
             for (int i = startIndex; i < partLength; i++) {
                 result += Long.valueOf(array[i]) * array[i];
