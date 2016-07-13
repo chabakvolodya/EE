@@ -1,6 +1,7 @@
 package ua.goit.java.ee.mod3_2;
 
 import ua.goit.java.ee.mod3_2.api.SquareSum;
+import ua.goit.java.ee.mod3_2.exception.TimeOutSquareSum;
 
 import java.util.ArrayList;
 import java.util.concurrent.*;
@@ -16,7 +17,7 @@ public class MyImplSquareSum implements SquareSum {
         if (values.length < numberOfThreads)
             numberOfThreads = values.length;
 
-        Phaser phaser = new Phaser(1);
+        Phaser phaser = new Phaser();
         ExecutorService executor = Executors.newCachedThreadPool();
         ArrayList<SquareSumPart> partResults = new ArrayList<>();
 
@@ -34,8 +35,15 @@ public class MyImplSquareSum implements SquareSum {
             cursor += size;
         }
 
-        phaser.arriveAndAwaitAdvance();
-        phaser.arriveAndDeregister();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        if (!phaser.isTerminated())
+            throw new TimeOutSquareSum();
+
         executor.shutdown();
 
         long results = 0;
@@ -71,13 +79,10 @@ public class MyImplSquareSum implements SquareSum {
                 result += Long.valueOf(array[i]) * array[i];
                 startIndex += partLength;
             }
-
-            phaser.arriveAndAwaitAdvance();
+            phaser.arriveAndDeregister();
         }
 
         public long getResult() {
-            phaser.arriveAndDeregister();
-
             return result;
         }
     }
