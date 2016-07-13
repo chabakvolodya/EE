@@ -1,8 +1,6 @@
 package ua.goit.java.ee.mod3_2;
 
 import ua.goit.java.ee.mod3_2.api.SquareSum;
-import ua.goit.java.ee.mod3_2.exception.TimeOutSquareSum;
-
 import java.util.ArrayList;
 import java.util.concurrent.*;
 
@@ -12,7 +10,7 @@ import java.util.concurrent.*;
 public class MyImplSquareSum implements SquareSum {
 
     @Override
-    public long getSquareSum(int[] values, int numberOfThreads) {
+    public long getSquareSum(int[] values, int numberOfThreads) throws TimeoutException, InterruptedException {
 
         if (values.length < numberOfThreads)
             numberOfThreads = values.length;
@@ -35,14 +33,11 @@ public class MyImplSquareSum implements SquareSum {
             cursor += size;
         }
 
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        try{
+            phaser.awaitAdvanceInterruptibly(0, 5, TimeUnit.SECONDS);
+        } finally {
+            phaser.forceTermination();
         }
-
-        if (!phaser.isTerminated())
-            throw new TimeOutSquareSum("Час виконання операції перевищив 5 секунд");
 
         executor.shutdown();
 
