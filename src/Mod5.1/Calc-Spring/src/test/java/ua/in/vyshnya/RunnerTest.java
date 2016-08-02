@@ -32,5 +32,4 @@ public class RunnerTest {
         assertEquals("sqrt,25 = 5", calc.execute("sqrt,25"));
         assertEquals("fact, 5 = 120", calc.execute("fact, 5"));
     }
-
 }

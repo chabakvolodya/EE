@@ -1,10 +1,13 @@
 package ua.in.vyshnya;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ua.in.vyshnya.api.Calc;
 import ua.in.vyshnya.exceptions.NotFoundModule;
 import ua.in.vyshnya.exceptions.NotFoundOperation;
 import ua.in.vyshnya.exceptions.NotValidSizeArguments;
+import ua.in.vyshnya.modules.ModuleNumber;
+import ua.in.vyshnya.operations.*;
 
 import static org.testng.Assert.*;
 
@@ -13,7 +16,20 @@ import static org.testng.Assert.*;
  */
 public class SuperCalcTest {
 
-    private Calc instance = new SuperCalc();
+    private Calc instance;
+
+    @BeforeMethod
+    private void init() {
+        final ModuleNumber moduleNumber = new ModuleNumber();
+        moduleNumber.setOperation("+", new OperationNumberAdd());
+        moduleNumber.setOperation("-", new OperationNumberSubtract());
+        moduleNumber.setOperation("*", new OperationNumberMultiplication());
+        moduleNumber.setOperation("/", new OperationNumberDivision());
+        moduleNumber.setOperation("log", new OperationNumberLog());
+        moduleNumber.setOperation("fact", new OperationNumberFactorial());
+        moduleNumber.setOperation("sqrt", new OperationNumberSqrt());
+        instance = new SuperCalc("number", moduleNumber);
+    }
 
     @Test
     public void testExecute() throws Exception {

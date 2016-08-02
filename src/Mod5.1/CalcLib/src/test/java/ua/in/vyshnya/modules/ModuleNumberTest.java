@@ -4,8 +4,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ua.in.vyshnya.api.Module;
 import ua.in.vyshnya.exceptions.NotValidSizeArgumentsThisOperationType;
-import ua.in.vyshnya.operations.OperationNumberAdd;
-import ua.in.vyshnya.operations.OperationNumberSubtract;
+import ua.in.vyshnya.operations.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +23,14 @@ public class ModuleNumberTest {
 
     @BeforeMethod
     void init() {
+
+        instance.setOperation("+", new OperationNumberAdd());
+        instance.setOperation("-", new OperationNumberSubtract());
+        instance.setOperation("*", new OperationNumberMultiplication());
+        instance.setOperation("/", new OperationNumberDivision());
+        instance.setOperation("log", new OperationNumberLog());
+        instance.setOperation("fact", new OperationNumberFactorial());
+        instance.setOperation("sqrt", new OperationNumberSqrt());
 
         mapGood.put("right", "3");
         mapGood.put("left", "2");

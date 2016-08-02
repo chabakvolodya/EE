@@ -9,7 +9,7 @@ import java.time.Period;
 /**
  * Created by Chucky on 21.07.2016.
  */
-public class OperationDateSubtraction implements Operation, OperationBinaryFlag {
+public class OperationDateSubtract implements Operation, OperationBinaryFlag {
 
     @Override
     public String execute(Object... strings) {

@@ -18,8 +18,8 @@ public class SuperCalc implements Calc {
     private Map<String, Module> modules = new HashMap<>();
     private Parser parser = new ParserDefault();
 
-    {
-        modules.put("number", new ModuleNumber());
+    public SuperCalc(String name, Module module) {
+        this.modules.put(name, module);
     }
 
     public String execute(String expression) {

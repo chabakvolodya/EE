@@ -11,16 +11,6 @@ import java.util.Map;
  */
 public class ModuleNumber extends ModuleTemplate {
 
-    {
-        operations.put("+", new OperationNumberAdd());
-        operations.put("-", new OperationNumberSubtract());
-        operations.put("*", new OperationNumberMultiplication());
-        operations.put("/", new OperationNumberDivision());
-        operations.put("log", new OperationNumberLog());
-        operations.put("fact", new OperationNumberFactorial());
-        operations.put("sqrt", new OperationNumberSqrt());
-    }
-
     @Override
     public boolean isAble(Map<String, Object> input) {
 
