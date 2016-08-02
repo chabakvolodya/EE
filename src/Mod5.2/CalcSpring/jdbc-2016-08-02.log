@@ -1,0 +1,6 @@
+22:54:02.353 TRACE [main] test.calcspring.config.AOPConfig - Calc input: [+];
+22:54:02.370 ERROR [main] test.calcspring.config.AOPConfig - Calc input: [+] = ERROR [test.calclib.exceptions.NotValidSizeArguments];
+22:54:26.977 TRACE [main] test.calcspring.config.AOPConfig - Calc input: [+, 5, jkjkjkjk];
+22:54:27.269 ERROR [main] test.calcspring.config.AOPConfig - Calc input: [+, 5, jkjkjkjk] = ERROR [test.calclib.exceptions.NotFoundModule];
+22:54:40.521 TRACE [main] test.calcspring.config.AOPConfig - Calc input: [:, 5.5, 9.4];
+22:54:40.539 ERROR [main] test.calcspring.config.AOPConfig - Calc input: [:, 5.5, 9.4] = ERROR [test.calclib.exceptions.NotFoundOperation];
